@@ -1,0 +1,10 @@
+{
+  "name": "gorod-motion-archive",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static viewer and validation for the preserved Gorod motion-design archive.",
+  "scripts": {
+    "test": "node scripts/validate.mjs"
+  },
+  "engines": {"node": ">=20"}
+}

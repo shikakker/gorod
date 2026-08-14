@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Gorod historical motion-design archive and interactive Lottie preview.">
+  <title>Gorod — motion archive</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="intro">
+      <p class="eyebrow">Historical motion-design archive</p>
+      <h1>Gorod splash animation</h1>
+      <p class="lede">An interactive viewer for the preserved After Effects and Lottie exports in this repository. The original source artifacts remain unchanged.</p>
+    </header>
+
+    <section class="viewer" aria-labelledby="preview-title">
+      <div class="viewer-head">
+        <div><p class="eyebrow">Interactive preview</p><h2 id="preview-title">Lottie export</h2></div>
+        <span id="status" class="status" role="status">Loading…</span>
+      </div>
+      <div id="animation" class="stage" aria-label="Gorod motion animation"></div>
+      <div class="controls" aria-label="Animation controls">
+        <button id="toggle" type="button">Pause</button>
+        <button id="restart" type="button">Restart</button>
+        <label>Export
+          <select id="source">
+            <option value="splash gorod.json">Splash Gorod</option>
+            <option value="data.json">Data export</option>
+          </select>
+        </label>
+        <label>Speed
+          <select id="speed">
+            <option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="facts">
+      <article><p class="eyebrow">Source</p><h2>After Effects</h2><p><code>gorod splash.aep</code> is preserved as the editable motion source.</p></article>
+      <article><p class="eyebrow">Runtime</p><h2>Lottie JSON</h2><p>The viewer uses the checked-in Bodymovin/Lottie exports rather than recreating the animation.</p></article>
+      <article><p class="eyebrow">Scope</p><h2>Motion case</h2><p>This repository documents animation assets. It is not presented as a complete application.</p></article>
+    </section>
+
+    <footer>Original motion artifacts preserved · modern viewer added for inspection</footer>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" integrity="sha512-b6lJpVqZ8VtHEz1fD8Qn19Q+u5W1bH5rWvY6Q9jQmX3iYV7W5u2f1m9K8R6r2n5F4a8s2k3q4p5r6s7t8u9v0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/viewer.js"></script>
+</body>
+</html>

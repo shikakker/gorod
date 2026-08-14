@@ -1,108 +1,99 @@
-# Gorod — Historical Splash / Motion Design Archive
+# Gorod — motion design archive
 
-Historical motion-design repository preserving a **Gorod** splash / loader animation experiment and its exported web / Lottie artifacts.
+Historical motion-design repository preserving the **Gorod** splash animation, its Adobe After Effects source and browser-oriented Lottie/Bodymovin exports.
 
-This repository is not a complete application source tree. The visible checkout contains an Adobe After Effects project, generated animation JSON, a self-contained Bodymovin / Lottie HTML demo, and related exported assets.
+The repository is intentionally presented as a **motion-design case**, not as source code for a complete Gorod application.
 
-## Repository contents
+## Interactive viewer
+
+A small modern viewer is available at `index.html`. It loads the original checked-in Lottie exports and adds:
+
+- play / pause;
+- restart;
+- selection between `splash gorod.json` and `data.json`;
+- 0.5×–2× playback speed;
+- responsive presentation;
+- keyboard-accessible native controls;
+- reduced-motion-aware autoplay behavior;
+- explicit loading/error status.
+
+No original motion source was replaced to build the viewer.
+
+## Preserved source artifacts
 
 ```text
 gorod splash.aep     Adobe After Effects source
-splash gorod.json    exported animation data
-demo.html            self-contained Bodymovin / Lottie preview
-splash 2/            supporting animation assets / exports
-2/                   supporting historical assets
-data.json            generated / supporting animation data
+splash gorod.json    Lottie / Bodymovin export
+data.json            second animation export
+demo.html            historical generated preview
+splash 2/            historical supporting exports
+2/                   historical supporting assets
 ```
 
-There is no root package manager, application backend, database, Android / iOS project, or maintainable web-application source in the current repository.
+The large historical `demo.html` is retained for provenance. It contains generated/runtime material and should not be treated as maintainable hand-authored application code.
 
-## Motion workflow
-
-The repository represents a typical historical motion handoff:
+## Modern portfolio layer
 
 ```text
-After Effects project
-       |
-       v
-Bodymovin / Lottie export
-       |
-       +-- JSON animation data
-       `-- generated HTML preview
+index.html            interactive case viewer
+assets/styles.css     responsive presentation
+assets/viewer.js      Lottie controls and states
+scripts/validate.mjs  source-integrity checks
+.github/workflows/    CI validation
 ```
 
-The large `demo.html` embeds the Lottie runtime plus serialized animation data directly in one file. It should be treated as a **generated preview artifact**, not as hand-authored application code.
+The viewer uses `lottie-web` from a pinned CDN version and keeps animation payloads as local JSON files.
 
-## After Effects source
+## Run locally
 
-`gorod splash.aep` is the strongest editable source artifact in the repository.
-
-Because `.aep` is a binary authoring format, Git cannot provide useful line-by-line diffs for changes inside the project.
-
-For a modern portfolio archive, useful companion artifacts would be:
-
-- rendered MP4 / WebM preview;
-- animated WebP / GIF;
-- still keyframes;
-- a short explanation of where the splash appears in the product flow;
-- the original design / brand context if it can be published.
-
-## Lottie / Bodymovin export
-
-`splash gorod.json` and `demo.html` preserve the browser-oriented animation export.
-
-A maintainable modern integration would normally keep the animation JSON separately and load it through a current Lottie runtime instead of committing a large generated HTML file that bundles the runtime and payload together.
-
-Conceptually:
-
-```text
-animation.json
-     +
-Lottie runtime dependency
-     +
-small application wrapper
-```
-
-## Running the demo
-
-The exported HTML is static. Serve the repository with any local HTTP server, for example:
+Serve the repository over HTTP so JSON loading works consistently:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then open:
+Open:
 
 ```text
-http://localhost:8000/demo.html
+http://localhost:8000/
 ```
 
-Opening large generated animation files directly from `file://` can behave differently across browsers, so a local HTTP server is preferable.
+The original generated preview remains available at `/demo.html`.
 
-## Product / authorship boundary
+## Validation
 
-The repository name alone does not establish the full underlying Gorod product, its engineering architecture, or production application behavior.
+Node 20+ is sufficient; there are no npm dependencies to install.
 
-What this checkout proves is narrower and still useful:
+```bash
+npm test
+```
 
-- motion / splash design;
-- After Effects authoring;
-- Bodymovin / Lottie export workflow;
-- web animation handoff;
-- historical product-presentation assets.
+The check verifies that the original After Effects file, both JSON exports and the portfolio viewer exist. It parses both Lottie files and checks core animation metadata and layer data.
 
-For portfolio use, present it as **design / motion work** unless the actual application source and role context are documented elsewhere.
+GitHub Actions runs the same validation on pushes and pull requests.
 
-## Generated-file caveat
+## Motion workflow represented here
 
-Files such as `demo.html` and large exported JSON should not be reviewed as if every embedded runtime line was authored specifically for this project.
+```text
+After Effects source
+       ↓
+Bodymovin / Lottie export
+       ↓
+JSON animation data
+       ↓
+Browser preview / product handoff
+```
 
-They include generated / third-party animation-runtime code and serialized design data.
+## Scope and authorship boundary
+
+What this checkout directly demonstrates is motion/splash design, After Effects authoring artifacts, Lottie export workflow and web-animation handoff. The repository does **not** contain a backend, database, native application project or sufficient source to claim implementation of the full Gorod product.
+
+No product metrics, production scale or engineering features are inferred from the repository.
 
 ## Current status
 
-**Historical motion-design / splash-animation archive.** The editable After Effects source and exported Lottie / Bodymovin artifacts are preserved; the full application source is not present in this repository.
+**Portfolio-ready historical motion archive with an interactive web viewer.** Original `.aep`, Lottie exports and generated demo are preserved alongside a small maintainable presentation layer.
 
 ## License
 
-No repository-wide software or media license is assumed by this README. Verify ownership / client-use constraints for the design, fonts, images, Lottie runtime, and After Effects source before redistribution.
+No repository-wide software or media license is assumed. Verify ownership and redistribution rights for design assets, fonts, generated runtime material and After Effects source before reuse.
